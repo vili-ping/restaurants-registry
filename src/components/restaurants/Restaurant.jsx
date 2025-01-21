@@ -1,3 +1,5 @@
+import { Food } from './Food';
+
 export const Restaurant = ({ name, menu, reviews }) => {
   return (
     <div>
@@ -5,7 +7,11 @@ export const Restaurant = ({ name, menu, reviews }) => {
       <h3>Menu</h3>
       <ul>
         {menu.length ? (
-          menu.map((food) => <li key={food.id}>{food.name}</li>)
+          menu.map((food) => (
+            <li key={food.id}>
+              <Food foodName={food.name} />
+            </li>
+          ))
         ) : (
           <p>Sorry, we haven&apos;t food &#128546;</p>
         )}
