@@ -1,14 +1,14 @@
 import { useCount } from '../../hooks/useCount';
 
 export const Food = ({ foodName }) => {
-  const { count, onIncrement, onDecrement } = useCount(0);
+  const { count, increment, decrement } = useCount(0);
 
   return (
     <>
       <span>{foodName}</span>
-      <button onClick={onDecrement}>-</button>
+      <button onClick={increment}>-</button>
       <span>{count}</span>
-      <button onClick={onIncrement}>+</button>
+      <button onClick={decrement}>+</button>
     </>
   );
 };
