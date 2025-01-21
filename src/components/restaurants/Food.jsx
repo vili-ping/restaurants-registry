@@ -6,9 +6,9 @@ export const Food = ({ foodName }) => {
   return (
     <>
       <span>{foodName}</span>
-      <button onClick={increment}>-</button>
+      <button onClick={decrement}>-</button>
       <span>{count}</span>
-      <button onClick={decrement}>+</button>
+      <button onClick={increment}>+</button>
     </>
   );
 };
