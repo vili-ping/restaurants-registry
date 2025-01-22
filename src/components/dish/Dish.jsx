@@ -1,6 +1,6 @@
 import { useCount } from '../../hooks/useCount';
 
-export const Food = ({ foodName }) => {
+export const Dish = ({ foodName }) => {
   const { count, increment, decrement } = useCount(0);
 
   return (

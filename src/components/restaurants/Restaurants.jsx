@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { Restaurant } from './Restaurant';
+import { Restaurant } from '../restaurant/Restaurant';
 
 export const Restaurants = ({ restaurants }) => {
   const [currentRestaurant, setCurrentRestaurant] = useState(restaurants[0]);
 
-  const changeRestaurant = (id) => {
-    setCurrentRestaurant(
-      restaurants.find((restaurant) => restaurant.id === id)
-    );
+  const changeRestaurant = (restaurant) => {
+    setCurrentRestaurant(restaurant);
   };
 
   return (
@@ -15,7 +13,7 @@ export const Restaurants = ({ restaurants }) => {
       {restaurants.map((restaurant) => (
         <button
           key={restaurant.id}
-          onClick={() => changeRestaurant(restaurant.id)}
+          onClick={() => changeRestaurant(restaurant)}
         >
           {restaurant.name}
         </button>
