@@ -19,12 +19,16 @@ export const Restaurants = ({ restaurants }) => {
         </button>
       ))}
 
-      <Restaurant
-        key={currentRestaurant.id}
-        name={currentRestaurant.name}
-        menu={currentRestaurant.menu}
-        reviews={currentRestaurant.reviews}
-      />
+      {currentRestaurant ? (
+        <Restaurant
+          key={currentRestaurant.id}
+          name={currentRestaurant.name}
+          menu={currentRestaurant.menu}
+          reviews={currentRestaurant.reviews}
+        />
+      ) : (
+        <p>Please, select restaurant</p>
+      )}
     </>
   );
 };
