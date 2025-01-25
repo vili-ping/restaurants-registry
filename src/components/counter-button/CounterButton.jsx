@@ -4,10 +4,20 @@ export const CounterButton = () => {
   const { count, increment, decrement } = useCount(0);
 
   return (
-    <>
-      <button onClick={decrement}>-</button>
+    <span>
+      <button
+        type="button"
+        onClick={decrement}
+      >
+        -
+      </button>
       <span>{count}</span>
-      <button onClick={increment}>+</button>
-    </>
+      <button
+        type="button"
+        onClick={increment}
+      >
+        +
+      </button>
+    </span>
   );
 };
