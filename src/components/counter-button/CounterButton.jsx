@@ -1,7 +1,11 @@
 import { useCount } from '../../hooks/useCount';
 
-export const CounterButton = () => {
-  const { count, increment, decrement } = useCount(0);
+export const CounterButton = ({ initialNumber, maxNumber, minNumber }) => {
+  const { count, increment, decrement } = useCount(
+    initialNumber,
+    maxNumber,
+    minNumber
+  );
 
   return (
     <span>

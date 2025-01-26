@@ -1,5 +1,9 @@
 import { CounterButton } from '../counter-button/CounterButton';
 
+const INITIAL_REVIEW_SCORE = 1;
+const MAX_REVIEW_SCORE = 5;
+const MIN_REVIEW_SCORE = 1;
+
 export const ReviewForm = () => {
   return (
     <form>
@@ -21,7 +25,12 @@ export const ReviewForm = () => {
       </div>
 
       <label>
-        Your score: <CounterButton />
+        Your score:
+        <CounterButton
+          initialNumber={INITIAL_REVIEW_SCORE}
+          minNumber={MIN_REVIEW_SCORE}
+          maxNumber={MAX_REVIEW_SCORE}
+        />
       </label>
 
       <div>
