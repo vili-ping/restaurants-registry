@@ -15,9 +15,24 @@ export const useCount = (initalNumber, maxNumber, minNumber) => {
     }
   };
 
+  const handleSetCount = (count) => {
+    if (count > maxNumber) {
+      setCount(maxNumber);
+      return;
+    }
+
+    if (count < minNumber) {
+      setCount(minNumber);
+      return;
+    }
+
+    setCount(count);
+  };
+
   return {
     count,
     increment,
     decrement,
+    setCount: handleSetCount,
   };
 };
