@@ -10,16 +10,20 @@ import {
   MAX_REVIEW_SCORE,
   MIN_REVIEW_SCORE,
 } from './constants/counter';
+import { useCount } from '../../hooks/useCount';
 
 export const ReviewForm = () => {
   const [formState, dispatch] = useReducer(formReducer, INITIAL_FORM_REVIEW);
+  const {
+    count: scoreValue,
+    increment: incrementScore,
+    decrement: decrementScore,
+  } = useCount(INITIAL_REVIEW_SCORE, MAX_REVIEW_SCORE, MIN_REVIEW_SCORE);
 
   const setName = (inputValue) =>
     dispatch({ type: DISPATCH_EVENTS.SET_NAME, payload: inputValue });
   const setReview = (inputValue) =>
     dispatch({ type: DISPATCH_EVENTS.SET_REVIEW, payload: inputValue });
-  const setScore = (inputValue) =>
-    dispatch({ type: DISPATCH_EVENTS.SET_SCORE, payload: inputValue });
   const clearForm = () => dispatch({ type: DISPATCH_EVENTS.CLEAR_FORM });
 
   const { name, review } = formState;
@@ -51,10 +55,9 @@ export const ReviewForm = () => {
 
       <span>Your score:</span>
       <CounterButton
-        initialNumber={INITIAL_REVIEW_SCORE}
-        minNumber={MIN_REVIEW_SCORE}
-        maxNumber={MAX_REVIEW_SCORE}
-        onChange={(scoreValue) => setScore(scoreValue)}
+        value={scoreValue}
+        onDecrement={decrementScore}
+        onIncrement={incrementScore}
       />
 
       <div>
