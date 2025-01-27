@@ -3,14 +3,14 @@ export const CounterButton = ({ value, onIncrement, onDecrement }) => {
     <span>
       <button
         type="button"
-        onClick={() => onDecrement()}
+        onClick={onDecrement}
       >
         -
       </button>
       <span>{value}</span>
       <button
         type="button"
-        onClick={() => onIncrement()}
+        onClick={onIncrement}
       >
         +
       </button>

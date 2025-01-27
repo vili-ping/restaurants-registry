@@ -1,32 +1,10 @@
-import { useReducer } from 'react';
+import { useReviewForm } from './hooks/useReviewForm';
 import { CounterButton } from '../counter-button/CounterButton';
-import {
-  formReducer,
-  DISPATCH_EVENTS,
-  INITIAL_FORM_REVIEW,
-} from './hooks/useReviewForm';
-import {
-  INITIAL_REVIEW_SCORE,
-  MAX_REVIEW_SCORE,
-  MIN_REVIEW_SCORE,
-} from './constants/counter';
-import { useCount } from '../../hooks/useCount';
 
 export const ReviewForm = () => {
-  const [formState, dispatch] = useReducer(formReducer, INITIAL_FORM_REVIEW);
-  const {
-    count: scoreValue,
-    increment: incrementScore,
-    decrement: decrementScore,
-  } = useCount(INITIAL_REVIEW_SCORE, MAX_REVIEW_SCORE, MIN_REVIEW_SCORE);
+  const { state, actions } = useReviewForm();
 
-  const setName = (inputValue) =>
-    dispatch({ type: DISPATCH_EVENTS.SET_NAME, payload: inputValue });
-  const setReview = (inputValue) =>
-    dispatch({ type: DISPATCH_EVENTS.SET_REVIEW, payload: inputValue });
-  const clearForm = () => dispatch({ type: DISPATCH_EVENTS.CLEAR_FORM });
-
-  const { name, review } = formState;
+  console.log(state);
 
   return (
     <form>
@@ -35,9 +13,9 @@ export const ReviewForm = () => {
           Your name:
           <input
             type="text"
-            value={name}
+            value={state.name}
             placeholder="Your name"
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => actions.setName(event.target.value)}
           ></input>
         </label>
       </div>
@@ -47,23 +25,23 @@ export const ReviewForm = () => {
           Your review text:
           <textarea
             placeholder="Your review"
-            value={review}
-            onChange={(event) => setReview(event.target.value)}
+            value={state.review}
+            onChange={(event) => actions.setReview(event.target.value)}
           ></textarea>
         </label>
       </div>
 
       <span>Your score:</span>
       <CounterButton
-        value={scoreValue}
-        onDecrement={decrementScore}
-        onIncrement={incrementScore}
+        value={state.score}
+        onDecrement={actions.decreaseScore}
+        onIncrement={actions.increaseScore}
       />
 
       <div>
         <button
           type="button"
-          onClick={clearForm}
+          onClick={actions.clearForm}
         >
           Clear form
         </button>
