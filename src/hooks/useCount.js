@@ -3,17 +3,8 @@ import { useState } from 'react';
 export const useCount = (initalNumber, maxNumber, minNumber) => {
   const [count, setCount] = useState(initalNumber);
 
-  const increment = () => {
-    if (count < maxNumber) {
-      setCount(count + 1);
-    }
-  };
-
-  const decrement = () => {
-    if (count > minNumber) {
-      setCount(count - 1);
-    }
-  };
+  const increment = () => setCount(Math.min(count + 1, maxNumber));
+  const decrement = () => setCount(Math.max(count - 1, minNumber));
 
   const handleSetCount = (count) => {
     if (count > maxNumber) {
