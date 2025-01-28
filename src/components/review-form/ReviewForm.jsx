@@ -6,8 +6,6 @@ const SCORE_REVIEW_ID_ELEMENT = 'score-review';
 export const ReviewForm = () => {
   const { state, actions } = useReviewForm();
 
-  console.log(state);
-
   return (
     <form>
       <div>
