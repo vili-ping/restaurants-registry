@@ -17,8 +17,8 @@ export const Dish = ({ foodName }) => {
       <span>{foodName}</span>
       <CounterButton
         value={count}
-        onDecrement={decrement}
-        onIncrement={increment}
+        decrement={decrement}
+        increment={increment}
       />
     </>
   );

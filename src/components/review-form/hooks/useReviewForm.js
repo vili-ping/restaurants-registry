@@ -4,7 +4,6 @@ import {
   MAX_REVIEW_SCORE,
   MIN_REVIEW_SCORE,
 } from '../constants/counter';
-import { useCount } from '../../../hooks/useCount';
 
 const DISPATCH_ACTIONS = {
   SET_NAME: 'SET_NAME',
@@ -54,11 +53,7 @@ const formReducer = (state, { type, payload }) => {
 
 export const useReviewForm = () => {
   const [formState, dispatch] = useReducer(formReducer, INITIAL_FORM_REVIEW);
-  const { increment, decrement, setCount } = useCount(
-    INITIAL_REVIEW_SCORE,
-    MAX_REVIEW_SCORE,
-    MIN_REVIEW_SCORE
-  );
+  const { name, review, score } = formState;
 
   const setName = (inputValue) =>
     dispatch({ type: DISPATCH_ACTIONS.SET_NAME, payload: inputValue });
@@ -66,31 +61,23 @@ export const useReviewForm = () => {
   const setReview = (inputValue) =>
     dispatch({ type: DISPATCH_ACTIONS.SET_REVIEW, payload: inputValue });
 
-  const increaseScore = () => {
-    const score = increment();
+  const increaseScore = () =>
     dispatch({
       type: DISPATCH_ACTIONS.INCREASE_SCORE,
-      payload: score,
+      payload: Math.min(score + 1, MAX_REVIEW_SCORE),
     });
-  };
 
-  const decreaseScore = () => {
-    const score = decrement();
+  const decreaseScore = () =>
     dispatch({
       type: DISPATCH_ACTIONS.DECREASE_SCORE,
-      payload: score,
+      payload: Math.max(score - 1, MIN_REVIEW_SCORE),
     });
-  };
 
-  const clearForm = () => {
-    const newCount = setCount(INITIAL_REVIEW_SCORE);
+  const clearForm = () =>
     dispatch({
       type: DISPATCH_ACTIONS.CLEAR_FORM,
-      payload: newCount,
+      payload: INITIAL_REVIEW_SCORE,
     });
-  };
-
-  const { name, review, score } = formState;
 
   return {
     state: { name, review, score },

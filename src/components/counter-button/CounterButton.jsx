@@ -1,16 +1,19 @@
-export const CounterButton = ({ value, onIncrement, onDecrement }) => {
+export const CounterButton = ({ id, value, increment, decrement }) => {
   return (
-    <span>
+    <span
+      id={id}
+      role="group"
+    >
       <button
         type="button"
-        onClick={onDecrement}
+        onClick={decrement}
       >
         -
       </button>
       <span>{value}</span>
       <button
         type="button"
-        onClick={onIncrement}
+        onClick={increment}
       >
         +
       </button>

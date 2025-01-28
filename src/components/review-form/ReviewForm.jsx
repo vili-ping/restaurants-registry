@@ -1,6 +1,8 @@
 import { useReviewForm } from './hooks/useReviewForm';
 import { CounterButton } from '../counter-button/CounterButton';
 
+const SCORE_REVIEW_ID_ELEMENT = 'score-review';
+
 export const ReviewForm = () => {
   const { state, actions } = useReviewForm();
 
@@ -10,7 +12,7 @@ export const ReviewForm = () => {
     <form>
       <div>
         <label>
-          Your name:
+          Your name
           <input
             type="text"
             value={state.name}
@@ -22,7 +24,7 @@ export const ReviewForm = () => {
 
       <div>
         <label>
-          Your review text:
+          Your review text
           <textarea
             placeholder="Your review"
             value={state.review}
@@ -31,11 +33,12 @@ export const ReviewForm = () => {
         </label>
       </div>
 
-      <span>Your score:</span>
+      <label htmlFor={SCORE_REVIEW_ID_ELEMENT}>Your score</label>
       <CounterButton
+        id={SCORE_REVIEW_ID_ELEMENT}
         value={state.score}
-        onDecrement={actions.decreaseScore}
-        onIncrement={actions.increaseScore}
+        decrement={actions.decreaseScore}
+        increment={actions.increaseScore}
       />
 
       <div>
