@@ -1,9 +1,8 @@
 import { useReducer } from 'react';
-import {
-  INITIAL_REVIEW_SCORE,
-  MAX_REVIEW_SCORE,
-  MIN_REVIEW_SCORE,
-} from '../constants/counter';
+
+const INITIAL_REVIEW_SCORE = 1;
+const MAX_REVIEW_SCORE = 5;
+const MIN_REVIEW_SCORE = 1;
 
 const DISPATCH_ACTIONS = {
   SET_NAME: 'SET_NAME',
